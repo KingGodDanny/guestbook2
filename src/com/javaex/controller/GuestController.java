@@ -21,6 +21,8 @@ public class GuestController extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		request.setCharacterEncoding("UTF-8");
+		
 		System.out.println("컨트롤러");  //잘 실행되는지 확인
 		
 		
@@ -30,6 +32,8 @@ public class GuestController extends HttpServlet {
 		
 		
 		if("addList".equals(action)) {
+			
+			
 			//리스트업무
 			System.out.println("[리스트 출력 확인OK]");
 			
@@ -51,6 +55,7 @@ public class GuestController extends HttpServlet {
 			
 		} else if("add".equals(action)) {
 			System.out.println("[게스트리스트 추가확인OK]");
+			
 			
 			//파라미터를 꺼내오기
 			String name = request.getParameter("name");

@@ -6,8 +6,11 @@
 <%@page import="java.util.List" %>
     
 <%
-	GuestBookDao guestBookDao = new GuestBookDao(); //게스트리스트를 불러오기위한 공간열기
-	List<GuestBookVo> guestList = guestBookDao.getGuestList(); //게스트리스트를 배열에 담기
+	List<GuestBookVo> guestList = (List<GuestBookVo>)request.getAttribute("gList");
+	
+	//이렇게 쓰는것은 모델1유형으로 쓰는것과 다름이없다(?)
+// 	GuestBookDao guestBookDao = new GuestBookDao(); //게스트리스트를 불러오기위한 공간열기
+// 	List<GuestBookVo> guestList = guestBookDao.getGuestList(); //게스트리스트를 배열에 담기
 
 %>    
     
@@ -48,6 +51,7 @@
 	
 	<%
 		for(int i=0; i<guestList.size(); i++) {
+			
 	%>
 		<br>
 		<table border="1">
