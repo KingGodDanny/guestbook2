@@ -3,7 +3,6 @@ package com.javaex.controller;
 import java.io.IOException;
 import java.util.List;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -11,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.javaex.dao.GuestBookDao;
+import com.javaex.util.WebUtil;
 import com.javaex.vo.GuestBookVo;
 
 
@@ -49,9 +49,10 @@ public class GuestController extends HttpServlet {
 			
 			
 			//html 작업한것을 jsp에게 시킨다. forward한다.
-			RequestDispatcher rd = request.getRequestDispatcher("WEB-INF/addList.jsp"); //WEB-INF에 넣는이유는 아무나 링크로 들어가지못하게!!
-			rd.forward(request, response);
+//			RequestDispatcher rd = request.getRequestDispatcher("WEB-INF/addList.jsp"); //WEB-INF에 넣는이유는 아무나 링크로 들어가지못하게!!
+//			rd.forward(request, response);
 			
+			WebUtil.forward(request, response, "WEB-INF/addList.jsp");
 			
 		} else if("add".equals(action)) {
 			System.out.println("[게스트리스트 추가확인OK]");
@@ -70,14 +71,18 @@ public class GuestController extends HttpServlet {
 			gBookDao.guestInsert(gBookVo);
 			
 			//넣어준거 바로 보기위해 리다이렉트
-			response.sendRedirect("/guestbook2/gbc?action=addList");
+//			response.sendRedirect("/guestbook2/gbc?action=addList");
+			
+			WebUtil.redirect(request, response, "/guestbook2/gbc?action=addList");
 			
 			
 		} else if("dForm".equals(action)) {
 			System.out.println("[게스트삭제폼 확인OK]");
 			
-			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/deleteForm.jsp");
-			rd.forward(request, response);
+//			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/deleteForm.jsp");
+//			rd.forward(request, response);
+			
+			WebUtil.forward(request, response, "/WEB-INF/deleteForm.jsp");
 			
 			
 		} else if("delete".equals(action)) {
@@ -92,7 +97,10 @@ public class GuestController extends HttpServlet {
 			gBookDao.goodDelete(no, password);
 			
 			//Delete한것 삭제됐는지 화면으로 보기위해 리다이렉트
-			response.sendRedirect("/guestbook2/gbc?action=addList");
+//			response.sendRedirect("/guestbook2/gbc?action=addList");
+			
+			WebUtil.redirect(request, response, "/guestbook2/gbc?action=addList");
+			
 		}
 		
 		
